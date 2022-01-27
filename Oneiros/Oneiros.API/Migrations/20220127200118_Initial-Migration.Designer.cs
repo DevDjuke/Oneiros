@@ -11,7 +11,7 @@ using Oneiros.API.Infrastructure;
 namespace Oneiros.API.Migrations
 {
     [DbContext(typeof(OneirosContext))]
-    [Migration("20220127124309_InitialMigration")]
+    [Migration("20220127200118_Initial-Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace Oneiros.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Oneiros.Data.Model.Affinity", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Affinity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,7 +32,6 @@ namespace Oneiros.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -40,7 +39,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Affinities");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Amulet", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Amulet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +52,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Amulets");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.BackGround", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.BackGround", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +65,23 @@ namespace Oneiros.API.Migrations
                     b.ToTable("BackGround");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Focus", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Campaign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roanokes");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Focus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +97,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Focus");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Item", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Item", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +106,6 @@ namespace Oneiros.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -99,7 +113,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Klasse", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Klasse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +122,6 @@ namespace Oneiros.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -116,7 +129,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Klasses");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Player", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,18 +150,15 @@ namespace Oneiros.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Gold")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Number")
@@ -169,7 +179,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerAffinity", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerAffinity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,7 +203,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerAffinities");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerFocus", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerFocus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -220,7 +230,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerFocus");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerItem", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -232,7 +242,6 @@ namespace Oneiros.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PlayerId")
@@ -253,7 +262,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerItems");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerKlasse", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerKlasse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,7 +286,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerKlasses");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerRace", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerRace", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -301,7 +310,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerRaces");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerRoanoke", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerRoanoke", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -324,7 +333,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerRoanokes");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerSkill", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSkill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -336,7 +345,6 @@ namespace Oneiros.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PlayerId")
@@ -359,7 +367,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerSkills");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerSubGroup", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSubGroup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -386,7 +394,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("PlayerSubGroups");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Race", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Race", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -395,7 +403,6 @@ namespace Oneiros.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -403,7 +410,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Races");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Roanoke", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -412,24 +419,6 @@ namespace Oneiros.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roanokes");
-                });
-
-            modelBuilder.Entity("Oneiros.Data.Model.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -437,7 +426,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.SubGroup", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.SubGroup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -446,7 +435,6 @@ namespace Oneiros.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -454,15 +442,15 @@ namespace Oneiros.API.Migrations
                     b.ToTable("SubGroups");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Player", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Player", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Amulet", "Amulet")
+                    b.HasOne("Oneiros.Domain.Model.Amulet", "Amulet")
                         .WithMany()
                         .HasForeignKey("AmuletId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.BackGround", "BackGround")
+                    b.HasOne("Oneiros.Domain.Model.BackGround", "BackGround")
                         .WithMany()
                         .HasForeignKey("BackGroundId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -473,17 +461,17 @@ namespace Oneiros.API.Migrations
                     b.Navigation("BackGround");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerAffinity", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerAffinity", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Affinity", "Affinity")
+                    b.HasOne("Oneiros.Domain.Model.Affinity", "Affinity")
                         .WithMany()
                         .HasForeignKey("AffinityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithOne("Affinity")
-                        .HasForeignKey("Oneiros.Data.Model.PlayerAffinity", "PlayerId")
+                        .HasForeignKey("Oneiros.Domain.Model.PlayerAffinity", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -492,17 +480,17 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerFocus", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerFocus", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Focus", "Focus")
+                    b.HasOne("Oneiros.Domain.Model.Focus", "Focus")
                         .WithMany()
                         .HasForeignKey("FocusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithOne("Focus")
-                        .HasForeignKey("Oneiros.Data.Model.PlayerFocus", "PlayerId")
+                        .HasForeignKey("Oneiros.Domain.Model.PlayerFocus", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -511,15 +499,15 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerItem", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerItem", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Item", "Item")
+                    b.HasOne("Oneiros.Domain.Model.Item", "Item")
                         .WithMany()
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithMany("Items")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -530,17 +518,17 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerKlasse", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerKlasse", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Klasse", "Klasse")
+                    b.HasOne("Oneiros.Domain.Model.Klasse", "Klasse")
                         .WithMany()
                         .HasForeignKey("KlasseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithOne("Klasse")
-                        .HasForeignKey("Oneiros.Data.Model.PlayerKlasse", "PlayerId")
+                        .HasForeignKey("Oneiros.Domain.Model.PlayerKlasse", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -549,15 +537,15 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Player");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerRace", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerRace", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithOne("Race")
-                        .HasForeignKey("Oneiros.Data.Model.PlayerRace", "PlayerId")
+                        .HasForeignKey("Oneiros.Domain.Model.PlayerRace", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Race", "Race")
+                    b.HasOne("Oneiros.Domain.Model.Race", "Race")
                         .WithMany()
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -568,15 +556,15 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Race");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerRoanoke", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerRoanoke", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithMany()
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Roanoke", "Roanoke")
+                    b.HasOne("Oneiros.Domain.Model.Campaign", "Roanoke")
                         .WithMany()
                         .HasForeignKey("RoanokeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -587,21 +575,21 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Roanoke");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerSkill", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSkill", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithMany("Skills")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Roanoke", "Roanoke")
+                    b.HasOne("Oneiros.Domain.Model.Campaign", "Roanoke")
                         .WithMany()
                         .HasForeignKey("RoanokeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.Skill", "Skill")
+                    b.HasOne("Oneiros.Domain.Model.Skill", "Skill")
                         .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -614,15 +602,15 @@ namespace Oneiros.API.Migrations
                     b.Navigation("Skill");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.PlayerSubGroup", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSubGroup", b =>
                 {
-                    b.HasOne("Oneiros.Data.Model.Player", "Player")
+                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
                         .WithOne("SubGroup")
-                        .HasForeignKey("Oneiros.Data.Model.PlayerSubGroup", "PlayerId")
+                        .HasForeignKey("Oneiros.Domain.Model.PlayerSubGroup", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Data.Model.SubGroup", "SubGroup")
+                    b.HasOne("Oneiros.Domain.Model.SubGroup", "SubGroup")
                         .WithMany()
                         .HasForeignKey("SubGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -633,26 +621,21 @@ namespace Oneiros.API.Migrations
                     b.Navigation("SubGroup");
                 });
 
-            modelBuilder.Entity("Oneiros.Data.Model.Player", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Player", b =>
                 {
-                    b.Navigation("Affinity")
-                        .IsRequired();
+                    b.Navigation("Affinity");
 
-                    b.Navigation("Focus")
-                        .IsRequired();
+                    b.Navigation("Focus");
 
                     b.Navigation("Items");
 
-                    b.Navigation("Klasse")
-                        .IsRequired();
+                    b.Navigation("Klasse");
 
-                    b.Navigation("Race")
-                        .IsRequired();
+                    b.Navigation("Race");
 
                     b.Navigation("Skills");
 
-                    b.Navigation("SubGroup")
-                        .IsRequired();
+                    b.Navigation("SubGroup");
                 });
 #pragma warning restore 612, 618
         }

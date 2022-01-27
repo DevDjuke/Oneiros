@@ -13,6 +13,6 @@ namespace Oneiros.Domain.Model
         public int RoanokeId { get; set; }
 
         public virtual Player Player { get; set; }
-        public virtual Roanoke Roanoke { get; set; }
+        public virtual Campaign Roanoke { get; set; }
     }
 }

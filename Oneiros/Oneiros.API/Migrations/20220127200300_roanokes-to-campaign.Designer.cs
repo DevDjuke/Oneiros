@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oneiros.API.Infrastructure;
 
@@ -10,9 +11,10 @@ using Oneiros.API.Infrastructure;
 namespace Oneiros.API.Migrations
 {
     [DbContext(typeof(OneirosContext))]
-    partial class OneirosContextModelSnapshot : ModelSnapshot
+    [Migration("20220127200300_roanokes-to-campaign")]
+    partial class roanokestocampaign
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

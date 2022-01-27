@@ -13,6 +13,6 @@
 
         public virtual Player Player { get; set; }
         public virtual Skill Skill { get; set; }
-        public virtual Roanoke Roanoke { get; set; }
+        public virtual Campaign Roanoke { get; set; }
     }
 }

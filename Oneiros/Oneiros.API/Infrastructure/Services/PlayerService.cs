@@ -2,10 +2,11 @@
 using Oneiros.Infrastructure.Repositories;
 
 using Oneiros.Data.DTO;
+using Oneiros.Infrastructure.Services;
 
 namespace Oneiros.API.Infrastructure.Services
 {
-    public class PlayerService
+    public class PlayerService : IPlayerService
     {
         private IPlayerRepository playerRepository;
         private IPlayerRoanokeRepository playerRoanokeRepository;

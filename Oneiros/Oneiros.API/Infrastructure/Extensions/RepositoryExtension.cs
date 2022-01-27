@@ -14,6 +14,7 @@ namespace Oneiros.API.Infrastructure.Extensions
         public static void ConfigureRepositories(this IServiceCollection services)
         {
             services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<IPlayerRoanokeRepository, PlayerRoanokeRepository>();
         }
     }
 }

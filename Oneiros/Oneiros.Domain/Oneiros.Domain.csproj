@@ -57,7 +57,7 @@
     <Compile Include="Model\PlayerSkill.cs" />
     <Compile Include="Model\PlayerSubGroup.cs" />
     <Compile Include="Model\Race.cs" />
-    <Compile Include="Model\Roanoke.cs" />
+    <Compile Include="Model\Campaign.cs" />
     <Compile Include="Model\Skill.cs" />
     <Compile Include="Model\SubGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

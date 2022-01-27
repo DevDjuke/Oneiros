@@ -10,7 +10,7 @@ namespace Oneiros.API.Infrastructure
 {
     public class OneirosContext : DbContext
     {
-        public OneirosContext(DbContextOptions options) : base(options) { }
+        public OneirosContext(DbContextOptions<OneirosContext> options) : base(options) { }
 
         #region Dbset
         public DbSet<Affinity> Affinities { get; set; }
@@ -20,7 +20,7 @@ namespace Oneiros.API.Infrastructure
         public DbSet<Item> Items { get; set; }
         public DbSet<Klasse> Klasses { get; set; }
         public DbSet<Race> Races { get; set; }
-        public DbSet<Roanoke> Roanokes { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SubGroup> SubGroups { get; set; }
 
