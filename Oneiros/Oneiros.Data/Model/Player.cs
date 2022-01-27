@@ -9,7 +9,7 @@ namespace Oneiros.Data.Model
     public class Player
     {
         public int Id { get; set; }
-        public int No { get; set; }
+        public int Number { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
 
@@ -25,14 +25,17 @@ namespace Oneiros.Data.Model
 
         public string Notes { get; set; }
 
-        public Amulet Amulet { get; set; }
-        public BackGround BackGround { get; set; }
-
         public List<PlayerSkill> Skills { get; set; }
         public List<PlayerItem> Items { get; set; }
 
         public int Gold { get; set; }
         public int Silver { get; set; }
         public int Copper { get; set; }
+
+        public int AmuletId { get; set; }
+        public int BackGroundId { get; set; }
+
+        public virtual Amulet Amulet { get; set; }
+        public virtual BackGround BackGround { get; set; }
     }
 }

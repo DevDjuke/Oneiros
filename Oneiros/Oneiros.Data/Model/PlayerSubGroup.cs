@@ -6,7 +6,7 @@ namespace Oneiros.Data.Model
     {
         public int Id { get; set; }
         public int PlayerId { get; set; }
-        public int SubId { get; set; }
+        public int SubGroupId { get; set; }
 
         public SubGroupNiveau Niveau { get; set; }
 
