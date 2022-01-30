@@ -5,11 +5,10 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-
 builder.Services.ConfigureDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
+builder.Services.ConfigureJsonServices();
 
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 

@@ -9,14 +9,14 @@ namespace Oneiros.API.Infrastructure.Services
     public class PlayerService : IPlayerService
     {
         private IPlayerRepository playerRepository;
-        private IPlayerRoanokeRepository playerRoanokeRepository;
+        private IPlayerCampaignRepository playerCampaignRepository;
 
         public PlayerService(
             IPlayerRepository playerRepository,
-            IPlayerRoanokeRepository playerRoanokeRepository)
+            IPlayerCampaignRepository playerCampaignRepository)
         {
             this.playerRepository = playerRepository;
-            this.playerRoanokeRepository = playerRoanokeRepository;
+            this.playerCampaignRepository = playerCampaignRepository;
         }
 
         public async Task<Player> AddNewPlayer(NewPlayerDTO newPlayer)
@@ -29,8 +29,8 @@ namespace Oneiros.API.Infrastructure.Services
                     Number = newPlayer.Number,
                 });
 
-            await playerRoanokeRepository.Add(
-                new PlayerRoanoke()
+            await playerCampaignRepository.Add(
+                new PlayerCampaign()
                 {
                     PlayerId = player.Id,
                     RoanokeId = newPlayer.RoanokeId

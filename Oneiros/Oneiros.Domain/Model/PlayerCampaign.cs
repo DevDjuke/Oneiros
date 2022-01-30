@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Oneiros.Domain.Model
 {
-    public class PlayerRoanoke
+    public class PlayerCampaign
     {
         public int Id { get; set; }
         public int PlayerId { get; set; }

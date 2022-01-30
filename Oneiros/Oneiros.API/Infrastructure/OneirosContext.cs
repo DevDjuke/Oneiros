@@ -33,7 +33,7 @@ namespace Oneiros.API.Infrastructure
         public DbSet<PlayerRace> PlayerRaces { get; set; } 
         public DbSet<PlayerSkill> PlayerSkills { get; set; }
         public DbSet<PlayerSubGroup> PlayerSubGroups { get; set; }
-        public DbSet<PlayerRoanoke> PlayerRoanokes { get; set; }
+        public DbSet<PlayerCampaign> PlayerRoanokes { get; set; }
 
         #endregion
 

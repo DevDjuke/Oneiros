@@ -1,0 +1,10 @@
+﻿@model Oneiros.Web.Models.CampaignViewModel
+
+@{
+    ViewData["Title"] = "Campaigns";
+}
+
+<ul>
+@foreach (var x in Model.Campaigns)
+    {<li>@x.CampaignName</li>}
+</ul>

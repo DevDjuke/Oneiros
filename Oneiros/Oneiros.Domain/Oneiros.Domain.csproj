@@ -53,7 +53,7 @@
     <Compile Include="Model\PlayerItem.cs" />
     <Compile Include="Model\PlayerKlasse.cs" />
     <Compile Include="Model\PlayerRace.cs" />
-    <Compile Include="Model\PlayerRoanoke.cs" />
+    <Compile Include="Model\PlayerCampaign.cs" />
     <Compile Include="Model\PlayerSkill.cs" />
     <Compile Include="Model\PlayerSubGroup.cs" />
     <Compile Include="Model\Race.cs" />

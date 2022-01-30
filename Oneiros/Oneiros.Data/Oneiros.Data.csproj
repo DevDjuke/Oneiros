@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\CampaignDTO.cs" />
     <Compile Include="DTO\NewPlayerDTO.cs" />
     <Compile Include="DTO\PlayerOverview.cs" />
     <Compile Include="Enums\FocusType.cs" />
