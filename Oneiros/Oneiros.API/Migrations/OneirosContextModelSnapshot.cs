@@ -22,48 +22,6 @@ namespace Oneiros.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Oneiros.Domain.Model.Affinity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Affinities");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.Amulet", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Amulets");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.BackGround", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BackGround");
-                });
-
             modelBuilder.Entity("Oneiros.Domain.Model.Campaign", b =>
                 {
                     b.Property<int>("Id")
@@ -86,7 +44,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Campaigns");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.Focus", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.CampaignCharacter", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,12 +52,239 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Type")
+                    b.Property<int>("CampaignId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Focus");
+                    b.HasIndex("CampaignId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CampaignCharacters");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Character", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BackGroundId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BackStory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BackGroundId");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Ability", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Short")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Abilities");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.BackGround", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BackGrounds");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Feature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Features");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.NonPlayer.Build", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("PresetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tier")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PresetId");
+
+                    b.ToTable("Builds");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BaseClassId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BaseClassId");
+
+                    b.ToTable("Presets");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Player.Classe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Race", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Races");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Generic.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Oneiros.Domain.Model.Item", b =>
@@ -118,7 +303,7 @@ namespace Oneiros.API.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.Klasse", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterAbility", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,15 +311,25 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AbilityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Klasses");
+                    b.HasIndex("AbilityId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CharacterAbilities");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.Player", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -142,49 +337,74 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AmuletId")
+                    b.Property<int>("AbilityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BackGroundId")
+                    b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Camouflage")
+                    b.Property<int?>("FeatureId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("FeatureId");
+
+                    b.ToTable("CharacterFeatures");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("CharacterLanguages");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterSkill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Proficiency")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Copper")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gold")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PickPocket")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Silver")
+                    b.Property<int>("SkillId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AmuletId");
+                    b.HasIndex("CharacterId");
 
-                    b.HasIndex("BackGroundId");
+                    b.HasIndex("SkillId");
 
-                    b.ToTable("Players");
+                    b.ToTable("CharacterSkills");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerAffinity", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,23 +412,22 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AffinityId")
+                    b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AffinityId");
+                    b.HasIndex("CharacterId");
 
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
+                    b.HasIndex("TagId");
 
-                    b.ToTable("PlayerAffinities");
+                    b.ToTable("CharacterTags");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerCampaign", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.NonPlayerBuild", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -216,22 +435,22 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("BuildId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoanokeId")
+                    b.Property<int>("NonPlayerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("BuildId");
 
-                    b.HasIndex("RoanokeId");
+                    b.HasIndex("NonPlayerId");
 
-                    b.ToTable("PlayerRoanokes");
+                    b.ToTable("NonPlayerBuilds");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerFocus", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetAbility", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,26 +458,28 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("FocusId")
+                    b.Property<int>("AbilityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Niveau")
+                    b.Property<int?>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("PresetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FocusId");
+                    b.HasIndex("CharacterId");
 
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
+                    b.HasIndex("PresetId");
 
-                    b.ToTable("PlayerFocus");
+                    b.ToTable("PresetAbilities");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerItem", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,31 +487,27 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ItemId")
+                    b.Property<int?>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("FeatureId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("PresetId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Stackable")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("CharacterId");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("FeatureId");
 
-                    b.ToTable("PlayerItems");
+                    b.HasIndex("PresetId");
+
+                    b.ToTable("PresetFeatures");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerKlasse", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetLanguage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -298,23 +515,22 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("KlasseId")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("NonPlayerId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("KlasseId");
+                    b.HasIndex("LanguageId");
 
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
+                    b.HasIndex("NonPlayerId");
 
-                    b.ToTable("PlayerKlasses");
+                    b.ToTable("PresetLanguages");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerRace", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetSkill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -322,40 +538,10 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("PresetId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RaceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
-
-                    b.HasIndex("RaceId");
-
-                    b.ToTable("PlayerRaces");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSkill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Niveau")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoanokeId")
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.Property<int>("SkillId")
@@ -363,16 +549,14 @@ namespace Oneiros.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("RoanokeId");
+                    b.HasIndex("PresetId");
 
                     b.HasIndex("SkillId");
 
-                    b.ToTable("PlayerSkills");
+                    b.ToTable("PresetSkills");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSubGroup", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.RaceAbility", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -380,26 +564,25 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Niveau")
+                    b.Property<int>("AbilityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("RaceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubGroupId")
+                    b.Property<int>("ScoreModifier")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId")
-                        .IsUnique();
+                    b.HasIndex("AbilityId");
 
-                    b.HasIndex("SubGroupId");
+                    b.HasIndex("RaceId");
 
-                    b.ToTable("PlayerSubGroups");
+                    b.ToTable("RaceAbilities");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.Race", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.RaceFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -407,31 +590,22 @@ namespace Oneiros.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Races");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.Skill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("FeatureId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills");
+                    b.HasIndex("FeatureId");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("RaceFeatures");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.SubGroup", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.NonPlayer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -442,205 +616,388 @@ namespace Oneiros.API.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("SubGroups");
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("NPCs");
                 });
 
             modelBuilder.Entity("Oneiros.Domain.Model.Player", b =>
                 {
-                    b.HasOne("Oneiros.Domain.Model.Amulet", "Amulet")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ClasseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("ClasseId");
+
+                    b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CampaignCharacter", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.Campaign", "Campaign")
                         .WithMany()
-                        .HasForeignKey("AmuletId")
+                        .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Domain.Model.BackGround", "BackGround")
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Character", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.BackGround", "BackGround")
                         .WithMany()
                         .HasForeignKey("BackGroundId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Amulet");
-
-                    b.Navigation("BackGround");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerAffinity", b =>
-                {
-                    b.HasOne("Oneiros.Domain.Model.Affinity", "Affinity")
-                        .WithMany()
-                        .HasForeignKey("AffinityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithOne("Affinity")
-                        .HasForeignKey("Oneiros.Domain.Model.PlayerAffinity", "PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Affinity");
-
-                    b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerCampaign", b =>
-                {
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Campaign", "Roanoke")
-                        .WithMany()
-                        .HasForeignKey("RoanokeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Player");
-
-                    b.Navigation("Roanoke");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerFocus", b =>
-                {
-                    b.HasOne("Oneiros.Domain.Model.Focus", "Focus")
-                        .WithMany()
-                        .HasForeignKey("FocusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithOne("Focus")
-                        .HasForeignKey("Oneiros.Domain.Model.PlayerFocus", "PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Focus");
-
-                    b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerItem", b =>
-                {
-                    b.HasOne("Oneiros.Domain.Model.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithMany("Items")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerKlasse", b =>
-                {
-                    b.HasOne("Oneiros.Domain.Model.Klasse", "Klasse")
-                        .WithMany()
-                        .HasForeignKey("KlasseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithOne("Klasse")
-                        .HasForeignKey("Oneiros.Domain.Model.PlayerKlasse", "PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Klasse");
-
-                    b.Navigation("Player");
-                });
-
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerRace", b =>
-                {
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithOne("Race")
-                        .HasForeignKey("Oneiros.Domain.Model.PlayerRace", "PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Race", "Race")
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Race", "Race")
                         .WithMany()
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Player");
+                    b.Navigation("BackGround");
 
                     b.Navigation("Race");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSkill", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.NonPlayer.Build", b =>
                 {
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithMany("Skills")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.Campaign", "Roanoke")
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", "Preset")
                         .WithMany()
-                        .HasForeignKey("RoanokeId")
+                        .HasForeignKey("PresetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oneiros.Domain.Model.Skill", "Skill")
+                    b.Navigation("Preset");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Player.Classe", "BaseClass")
+                        .WithMany()
+                        .HasForeignKey("BaseClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BaseClass");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterAbility", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Ability", "Ability")
+                        .WithMany()
+                        .HasForeignKey("AbilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany("Abilities")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterFeature", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany("Features")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Feature", "Feature")
+                        .WithMany()
+                        .HasForeignKey("FeatureId");
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Feature");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterLanguage", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany("Languages")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterSkill", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany("Skills")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Skill", "Skill")
                         .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Player");
-
-                    b.Navigation("Roanoke");
+                    b.Navigation("Character");
 
                     b.Navigation("Skill");
                 });
 
-            modelBuilder.Entity("Oneiros.Domain.Model.PlayerSubGroup", b =>
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.CharacterTag", b =>
                 {
-                    b.HasOne("Oneiros.Domain.Model.Player", "Player")
-                        .WithOne("SubGroup")
-                        .HasForeignKey("Oneiros.Domain.Model.PlayerSubGroup", "PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oneiros.Domain.Model.SubGroup", "SubGroup")
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
                         .WithMany()
-                        .HasForeignKey("SubGroupId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Player");
+                    b.HasOne("Oneiros.Domain.Model.Generic.Tag", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SubGroup");
+                    b.Navigation("Character");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.NonPlayerBuild", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.NonPlayer.Build", "Build")
+                        .WithMany()
+                        .HasForeignKey("BuildId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.NonPlayer", "NonPlayer")
+                        .WithMany("Builds")
+                        .HasForeignKey("NonPlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Build");
+
+                    b.Navigation("NonPlayer");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetAbility", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId");
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", "Preset")
+                        .WithMany("Abilities")
+                        .HasForeignKey("PresetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Preset");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetFeature", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId");
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Feature", "Feature")
+                        .WithMany()
+                        .HasForeignKey("FeatureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", null)
+                        .WithMany("Features")
+                        .HasForeignKey("PresetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Feature");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetLanguage", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.NonPlayer", "NonPlayer")
+                        .WithMany("Languages")
+                        .HasForeignKey("NonPlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("NonPlayer");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.PresetSkill", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", "Preset")
+                        .WithMany("Skills")
+                        .HasForeignKey("PresetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Skill", "Skill")
+                        .WithMany()
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Preset");
+
+                    b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.RaceAbility", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Ability", "Ability")
+                        .WithMany()
+                        .HasForeignKey("AbilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Race", "Race")
+                        .WithMany("AbilityModifiers")
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+
+                    b.Navigation("Race");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.Links.RaceFeature", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Feature", "Feature")
+                        .WithMany()
+                        .HasForeignKey("FeatureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Race", "Race")
+                        .WithMany()
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Feature");
+
+                    b.Navigation("Race");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.NonPlayer", b =>
+                {
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Race", "Race")
+                        .WithMany()
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Race");
                 });
 
             modelBuilder.Entity("Oneiros.Domain.Model.Player", b =>
                 {
-                    b.Navigation("Affinity");
+                    b.HasOne("Oneiros.Domain.Model.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Focus");
+                    b.HasOne("Oneiros.Domain.Model.CharacterModel.Player.Classe", "Classe")
+                        .WithMany()
+                        .HasForeignKey("ClasseId");
 
-                    b.Navigation("Items");
+                    b.Navigation("Character");
 
-                    b.Navigation("Klasse");
+                    b.Navigation("Classe");
+                });
 
-                    b.Navigation("Race");
+            modelBuilder.Entity("Oneiros.Domain.Model.Character", b =>
+                {
+                    b.Navigation("Abilities");
+
+                    b.Navigation("Features");
+
+                    b.Navigation("Languages");
 
                     b.Navigation("Skills");
+                });
 
-                    b.Navigation("SubGroup");
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.NonPlayer.Preset", b =>
+                {
+                    b.Navigation("Abilities");
+
+                    b.Navigation("Features");
+
+                    b.Navigation("Skills");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.CharacterModel.Race", b =>
+                {
+                    b.Navigation("AbilityModifiers");
+                });
+
+            modelBuilder.Entity("Oneiros.Domain.Model.NonPlayer", b =>
+                {
+                    b.Navigation("Builds");
+
+                    b.Navigation("Languages");
                 });
 #pragma warning restore 612, 618
         }

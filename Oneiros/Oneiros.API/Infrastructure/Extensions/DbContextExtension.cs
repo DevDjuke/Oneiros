@@ -13,7 +13,7 @@ namespace Oneiros.API.Infrastructure.Extensions
         public static void ConfigureDbContext(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<OneirosContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString), ServiceLifetime.Transient);
 
         }
     }

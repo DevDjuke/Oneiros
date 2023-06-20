@@ -4,7 +4,71 @@
     ViewData["Title"] = "Campaigns";
 }
 
-<ul>
-@foreach (var x in Model.Campaigns)
-    {<li>@x.CampaignName</li>}
-</ul>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #FBB13C;
+    }
+
+    .isDone {
+        background-color: darkgrey;
+    }
+
+    .buttonLink {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .buttonLink:hover {
+      background-color: #0056b3;
+    }
+
+    .centered {
+        text-align: center;
+    }
+</style>
+
+<div>
+    <h4>Welcome</h4>
+    <p>You Are Currently Running: @Model.CurrentlyRunningCount Campaigns.</p>
+    <p>@Model.EndingThisWeekCount Campaigns Will Be Ending This Week</p>
+    <p>@Model.StartingThisMonthCount Campaigns Will Be Starting This Month</p>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Player Amount</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var campaign in Model.Campaigns)
+        {
+        <tr class="@(campaign.IsDone ? "isDone" : "")">
+            <td>@campaign.CampaignName</td>
+            <td>@campaign.StartDate</td>
+            <td>@campaign.EndDate</td>
+            <td>@campaign.NumberOfPlayers</td>
+            <td class="centered"><a class="buttonLink" asp-area="" asp-controller="Campaign" asp-action="Edit" asp-route-id="@campaign.CampaignId">Edit</a></td>
+            <td class="centered"><a class="buttonLink" asp-area="" asp-controller="Campaign" asp-action="Delete" asp-route-id="@campaign.CampaignId">Delete</a></td>
+        </tr>
+        }    
+    </table>
+    <a class="buttonLink" asp-area="" asp-controller="Campaign" asp-action="Create">New</a>
+</div>

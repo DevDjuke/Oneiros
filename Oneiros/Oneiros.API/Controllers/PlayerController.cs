@@ -1,27 +1,45 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Oneiros.API.App.Players.Commands;
-using Oneiros.Domain.Model;
+using Oneiros.API.Controllers.Base;
 using Oneiros.Data.DTO;
 
 namespace Oneiros.API.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
-    public class PlayerController : Controller
+    [Produces("application/json")]
+    public class PlayerControllerController : BaseController, ICrudController
     {
-        private readonly IMediator mediator;
+        public PlayerControllerController(IMediator mediator) : base(mediator) { }
 
-        public PlayerController(IMediator mediator)
+        [HttpGet("all")]
+        public async Task<JsonResult> GetAll()
         {
-            this.mediator = mediator;
+            throw new NotImplementedException();
         }
 
-        [HttpPost("/add")]
-        public async Task<Player> AddPlayer([FromBody] NewPlayerDTO newPlayer)
+        [HttpGet("detail/{id}")]
+        public async Task<JsonResult> Get(int id)
         {
-            return await mediator.Send(new AddPlayerCommand() { NewPlayer = newPlayer });
+            throw new NotImplementedException();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut("{id}")]
+        public Task<IActionResult> Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        public Task<IActionResult> Create()
+        {
+            throw new NotImplementedException();
         }
     }
 }

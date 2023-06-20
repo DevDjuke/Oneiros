@@ -10,5 +10,6 @@ namespace Oneiros.Infrastructure.Web
     public interface ICampaignWebService
     {
         Task<List<CampaignDTO>> GetAll();
+        Task<CampaignDTO> GetById(int id);
     }
 }

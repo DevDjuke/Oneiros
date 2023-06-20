@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Oneiros.Data.DTO.Derived.NPCSimpleDTO>
+
+@{
+    var npcList = Model.ToList();
+    var totalItems = npcList.Count;
+    var itemsPerColumn = (int)Math.Ceiling((double)totalItems / 3);
+
+    var orderOptions = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Alphabetically", Value = "Alphabetically" },
+        new SelectListItem { Text = "Class", Value = "Class" },
+        new SelectListItem { Text = "Race", Value = "Race" }
+    };
+
+    var selectedOrder = "Alphabetically";
+}
+
+<style>
+    .row {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    #orderSelector {
+        width: 25%;
+    }
+</style>
+
+<div class="row">
+    <span class="title">Lathandriel's Lavish Lexicon of Legends</span>
+    <div class="col-md-12">
+        <form method="get">
+            <div class="form-group">
+                <label for="order">Order by:</label>
+                <select name="order" id="orderSelector" class="form-control" >
+                    @foreach (var option in orderOptions)
+                    {
+                        <option value="@option.Value" selected="@option.Value.Equals(@selectedOrder)">@option.Text</option>
+                    }
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="npcList">
+    <partial name="_NPCList" model="(Model.ToList(), selectedOrder)"/>
+</div>
+
+@section Scripts{
+    <script>
+        $(function(){
+            $("#orderSelector").change(function(){
+                $("#npcList").html("<h4>Loading..</h4>");
+                $.ajax({
+                    url: '@Url.Action("Order", "NPC")',
+                    data: {order: $(this).val()},
+                    type: "POST",
+                    success: function(result){
+                        $("#npcList").html(result);
+                    },
+                    error: function(e){
+                        $("#npcList").html(e.responseText);
+                    }
+                });
+
+                @selectedOrder = $(this).val();
+            })
+        })
+    </script>
+}

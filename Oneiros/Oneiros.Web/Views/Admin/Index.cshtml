@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Admin Page";
+}
+
+<style>
+    .row {
+        margin-top:20vh;
+    }
+
+    .buttonList {
+        display: grid;
+    }
+
+    .adminButton{
+        margin-bottom: 20px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .adminButton:hover {
+        color: white;
+        background-color: #0dcaf0;
+    }
+
+        .adminButton:disabled {
+            color: black;
+            background-color: gray;
+            pointer-events: none; /* Disable pointer events on the button */
+        }
+
+            .adminButton:disabled:hover {
+                color: black;
+                background-color: gray;
+                cursor: not-allowed; /* Change the cursor to indicate it's not allowed */
+            }
+</style>
+
+<div class="row">
+    <div class="col-md-4 buttonList">
+        <button class="adminButton" onclick="window.location.href='/Preset/Index'">Presets</button>
+        <button class="adminButton" onclick="window.location.href='/Race/Index'">Races</button>
+    </div>
+    <div class="col-md-4 buttonList">
+        <button class="adminButton" onclick="window.location.href='/NPC/Index'">NPCs</button>
+        <button class="adminButton" onclick="window.location.href='/Language/Index'">Languages</button>
+    </div>
+    <div class="col-md-4 buttonList">
+        <button class="adminButton" disabled>Spells</button>
+        <button class="adminButton" disabled>Monsters</button>
+    </div>
+</div>

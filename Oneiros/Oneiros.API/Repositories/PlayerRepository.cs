@@ -1,32 +1,43 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Oneiros.API.Infrastructure;
+using Oneiros.API.Repositories.Interfaces;
 using Oneiros.Domain.Model;
-using Oneiros.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Oneiros.API.Repositories
 {
     public class PlayerRepository : IPlayerRepository
-    {
+    {        
         private OneirosContext context;
-
-        public PlayerRepository(OneirosContext context)
+        public PlayerRepository(OneirosContext context){this.context = context;}
+        
+        public async Task<IEnumerable<Player>> GetAll()
+        {            
+            return await context.Players.ToListAsync();
+        }    
+       
+        public async Task<Player> GetById(int id)
         {
-            this.context = context;
+            return await context.Players.FindAsync(id);
         }
-
-        public async Task<Player> Add(Player player)
+        
+        public async Task Delete(int id)
         {
-            return (await context.Players.AddAsync(player)).Entity;
+            Player result = await GetById(id);
+            if (result != null){
+                context.Remove(result);                
+                await context.SaveChangesAsync();
+            }
         }
-
-        public async Task<Player> GetById(int playerId)
+        
+        public async Task Update(Player obj){
+            context.Players.Update(obj);
+            await context.SaveChangesAsync();
+        }
+        
+        public async Task Create(Player obj)
         {
-            return await context.Players.Where(x => x.Id == playerId).SingleOrDefaultAsync();
+            context.Players.Add(obj);
+            await context.SaveChangesAsync();
         }
     }
 }

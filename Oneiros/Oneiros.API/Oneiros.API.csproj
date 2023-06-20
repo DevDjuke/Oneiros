@@ -31,7 +31,14 @@
   <ItemGroup>
     <ProjectReference Include="..\Oneiros.Data\Oneiros.Data.csproj" />
     <ProjectReference Include="..\Oneiros.Domain\Oneiros.Domain.csproj" />
-    <ProjectReference Include="..\Oneiros.Infrastructure\Oneiros.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="App\Commands\Create\" />
+    <Folder Include="App\Commands\Update\" />
+    <Folder Include="App\Queries\GetAll\" />
+    <Folder Include="App\Queries\GetById\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

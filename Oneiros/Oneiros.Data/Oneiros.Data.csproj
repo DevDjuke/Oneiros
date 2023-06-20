@@ -41,12 +41,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\AbilityDTO.cs" />
+    <Compile Include="DTO\BackGroundDTO.cs" />
+    <Compile Include="DTO\BuildDTO.cs" />
+    <Compile Include="DTO\CampaignCharacterDTO.cs" />
     <Compile Include="DTO\CampaignDTO.cs" />
-    <Compile Include="DTO\NewPlayerDTO.cs" />
-    <Compile Include="DTO\PlayerOverview.cs" />
-    <Compile Include="Enums\FocusType.cs" />
-    <Compile Include="Enums\SubGroupNiveau.cs" />
+    <Compile Include="DTO\Base\DTO.cs" />
+    <Compile Include="DTO\CharacterAbilityDTO.cs" />
+    <Compile Include="DTO\CharacterDTO.cs" />
+    <Compile Include="DTO\CharacterFeatureDTO.cs" />
+    <Compile Include="DTO\CharacterLanguageDTO.cs" />
+    <Compile Include="DTO\CharacterSkillDTO.cs" />
+    <Compile Include="DTO\CharacterTagDTO.cs" />
+    <Compile Include="DTO\ClasseDTO.cs" />
+    <Compile Include="DTO\Derived\PresetSimpleDTO.cs" />
+    <Compile Include="DTO\FeatureDTO.cs" />
+    <Compile Include="DTO\ItemDTO.cs" />
+    <Compile Include="DTO\LanguageDTO.cs" />
+    <Compile Include="DTO\NonPlayerBuildDTO.cs" />
+    <Compile Include="DTO\NonPlayerDTO.cs" />
+    <Compile Include="DTO\Derived\NPCSimpleDTO.cs" />
+    <Compile Include="DTO\PlayerDTO.cs" />
+    <Compile Include="DTO\PresetAbilityDTO.cs" />
+    <Compile Include="DTO\PresetDTO.cs" />
+    <Compile Include="DTO\PresetFeatureDTO.cs" />
+    <Compile Include="DTO\PresetLanguageDTO.cs" />
+    <Compile Include="DTO\PresetSkillDTO.cs" />
+    <Compile Include="DTO\RaceAbilityDTO.cs" />
+    <Compile Include="DTO\RaceDTO.cs" />
+    <Compile Include="DTO\RaceFeatureDTO.cs" />
+    <Compile Include="DTO\SkillDTO.cs" />
+    <Compile Include="DTO\TagDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Oneiros.Domain\Oneiros.Domain.csproj">
+      <Project>{2eb5ccd1-52f6-41d3-b7e8-a4e1874af35c}</Project>
+      <Name>Oneiros.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

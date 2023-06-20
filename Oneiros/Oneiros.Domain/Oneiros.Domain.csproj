@@ -41,32 +41,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Affinity.cs" />
-    <Compile Include="Model\Amulet.cs" />
-    <Compile Include="Model\BackGround.cs" />
-    <Compile Include="Model\Focus.cs" />
+    <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\CharacterModel\Ability.cs" />
+    <Compile Include="Model\CharacterModel\BackGround.cs" />
+    <Compile Include="Model\CharacterModel\Feature.cs" />
+    <Compile Include="Model\CharacterModel\Language.cs" />
+    <Compile Include="Model\CharacterModel\NonPlayer\Build.cs" />
+    <Compile Include="Model\CharacterModel\NonPlayer\Preset.cs" />
+    <Compile Include="Model\Generic\Tag.cs" />
     <Compile Include="Model\Item.cs" />
-    <Compile Include="Model\Klasse.cs" />
-    <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\PlayerAffinity.cs" />
-    <Compile Include="Model\PlayerFocus.cs" />
-    <Compile Include="Model\PlayerItem.cs" />
-    <Compile Include="Model\PlayerKlasse.cs" />
-    <Compile Include="Model\PlayerRace.cs" />
-    <Compile Include="Model\PlayerCampaign.cs" />
-    <Compile Include="Model\PlayerSkill.cs" />
-    <Compile Include="Model\PlayerSubGroup.cs" />
-    <Compile Include="Model\Race.cs" />
+    <Compile Include="Model\CharacterModel\Player\Classe.cs" />
+    <Compile Include="Model\Links\CampaignCharacter.cs" />
+    <Compile Include="Model\CharacterModel\Race.cs" />
     <Compile Include="Model\Campaign.cs" />
-    <Compile Include="Model\Skill.cs" />
-    <Compile Include="Model\SubGroup.cs" />
+    <Compile Include="Model\CharacterModel\Skill.cs" />
+    <Compile Include="Model\Links\CharacterAbility.cs" />
+    <Compile Include="Model\Links\CharacterFeature.cs" />
+    <Compile Include="Model\Links\CharacterLanguage.cs" />
+    <Compile Include="Model\Links\CharacterSkill.cs" />
+    <Compile Include="Model\Links\CharacterTag.cs" />
+    <Compile Include="Model\Links\NonPlayerBuild.cs" />
+    <Compile Include="Model\Links\PresetAbility.cs" />
+    <Compile Include="Model\Links\PresetFeature.cs" />
+    <Compile Include="Model\Links\PresetLanguage.cs" />
+    <Compile Include="Model\Links\PresetSkill.cs" />
+    <Compile Include="Model\Links\RaceAbility.cs" />
+    <Compile Include="Model\Links\RaceFeature.cs" />
+    <Compile Include="Model\NonPlayer.cs" />
+    <Compile Include="Model\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oneiros.Data\Oneiros.Data.csproj">
-      <Project>{8cf2eb6d-5aae-4a12-a55c-1b0b38544abf}</Project>
-      <Name>Oneiros.Data</Name>
-    </ProjectReference>
+    <Folder Include="Model\CampaignModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

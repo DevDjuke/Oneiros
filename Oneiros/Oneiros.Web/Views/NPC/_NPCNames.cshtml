@@ -1,0 +1,84 @@
+﻿@model (IEnumerable<Oneiros.Data.DTO.Derived.NPCSimpleDTO>, string)
+
+@{
+    var NPCList = Model.Item1;
+    var order = Model.Item2;
+
+    string currentTitle = "";
+    bool isFirstElement = true;
+
+    foreach (var npc in NPCList)
+    {
+        var title = "";
+
+        switch (order)
+        {
+            case "Race":
+                title = npc.Race;
+                break;
+            case "Class":
+                title = npc.BaseClass;
+                break;
+            case "Alphabetically":
+            default:
+                title = npc.Name[0].ToString();
+                break;
+        }
+        
+        if (currentTitle.Equals("") || !currentTitle.Equals(title))
+        {
+            currentTitle = title;
+
+            if (!isFirstElement)
+            {
+                <hr />
+            }
+            else
+            {
+                isFirstElement = false;
+            }
+
+            <h4>@currentTitle</h4>
+        }
+
+        <div class="npcBlock">
+            <p class="npcName">@npc.Name</p>
+            <p class="npcClass">° @npc.Class</p>
+        </div>
+        
+    }
+}
+
+<style>
+    h4 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .npcName {
+        margin-top: 5px;
+        margin-bottom: 1px;
+    }
+    .npcClass{
+        margin-top:0px;
+        font-style: italic;
+        color: #999;
+        text-indent: 10px;
+    }
+
+    .npcBlock {
+        border-radius: 5px;
+        padding-left: 15px;
+        transition: all 0.3s ease;
+    }
+
+        .npcBlock:hover {
+            background-color: #0dcaf0;
+            cursor:pointer;
+        }
+
+            .npcBlock:hover .npcName,
+            .npcBlock:hover .npcClass {
+                color: white;
+            }
+</style>

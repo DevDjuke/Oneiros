@@ -1,0 +1,36 @@
+﻿@model (List<Oneiros.Data.DTO.Derived.NPCSimpleDTO>, string)
+
+@{
+    var npcList = Model.Item1;
+    var selectedOrder = Model.Item2;
+    var totalItems = npcList.Count;
+    var itemsPerColumn = (int)Math.Ceiling((double)totalItems / 3);
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <partial name="_NPCNames" model="(GetOrderedNPCs(npcList, selectedOrder).Take(itemsPerColumn), selectedOrder)" />
+    </div>
+    <div class="col-md-4">
+        <partial name="_NPCNames" model="(GetOrderedNPCs(npcList, selectedOrder).Skip(itemsPerColumn).Take(itemsPerColumn), selectedOrder)" />
+    </div>
+    <div class="col-md-4">
+        <partial name="_NPCNames" model="(GetOrderedNPCs(npcList, selectedOrder).Skip(itemsPerColumn * 2), selectedOrder)" />
+    </div>
+</div>
+
+@functions {
+    IEnumerable<Oneiros.Data.DTO.Derived.NPCSimpleDTO> GetOrderedNPCs(List<Oneiros.Data.DTO.Derived.NPCSimpleDTO> npcs, string order)
+    {
+        switch (order)
+        {
+            case "Class":
+                return npcs.OrderBy(n => n.BaseClass);
+            case "Race":
+                return npcs.OrderBy(n => n.Race);
+            case "Alphabetically":
+            default:
+                return npcs.OrderBy(n => n.Name);
+        }
+    }
+}

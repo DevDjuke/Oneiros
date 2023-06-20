@@ -1,17 +1,12 @@
 ﻿using Oneiros.Data.DTO;
-using Oneiros.Infrastructure.Web;
+using Oneiros.Web.Services.Base;
 using System.Text.Json;
 
 namespace Oneiros.Web.Services
 {
-    public class CampaignWebService : ICampaignWebService
+    public class CampaignWebService : WebService, ICampaignWebService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public CampaignWebService(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
+        public CampaignWebService(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
 
         public async Task<List<CampaignDTO>> GetAll()
         {
@@ -28,5 +23,19 @@ namespace Oneiros.Web.Services
             else return null;
         }
 
+        public async Task<CampaignDTO> GetById(int id)
+        {
+            var httpClient = _httpClientFactory.CreateClient("API");
+
+            var httpResponseMessage = await httpClient.GetAsync($"campaign/detail/{id}");
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                var content = await httpResponseMessage.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<CampaignDTO>(content);
+            }
+
+            else return null;
+        }
     }
 }

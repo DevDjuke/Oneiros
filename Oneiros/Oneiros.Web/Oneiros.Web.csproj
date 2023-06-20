@@ -8,12 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Oneiros.Data\Oneiros.Data.csproj" />
-    <ProjectReference Include="..\Oneiros.Infrastructure\Oneiros.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Font.Awesome" Version="5.15.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
   </ItemGroup>
 
 </Project>

@@ -21,6 +21,15 @@ p {
     color: var(--text);
 }
 
+#version {
+    position: fixed;
+    bottom:0;
+}
+
+#version p{
+    font-size: xx-small;
+}
+
 a,
 a:hover,
 a:focus {
@@ -87,6 +96,8 @@ span {
     background: var(--sidebar-bg);
     color: var(--text-light);
     transition: all 0.3s;
+    height:100vh;
+    position: fixed;
 }
 
     #sidebar.active {
@@ -167,7 +178,13 @@ ul.CTAs {
     width: 100%;
     padding: 20px;
     min-height: 100vh;
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
+    margin-left:270px;
+}
+
+#content.active {
+    margin-left: 100px;
+    transition: all 0.3s ease-in-out;
 }
 
 /* ---------------------------------------------------
